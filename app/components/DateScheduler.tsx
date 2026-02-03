@@ -1,18 +1,25 @@
 "use client";
 
-import { useState, FormEvent } from "react";
+import { useState, FormEvent, useEffect } from "react";
 import DateTicket from "./DateTicket";
 import gsap from "gsap";
 
-export default function DateScheduler() {
+export default function DateScheduler({ referralNumber, senderName }: { referralNumber?: string | null, senderName?: string | null }) {
     const [step, setStep] = useState(1);
     const [formData, setFormData] = useState({
         date: "",
         time: "",
         location: "",
         activity: "",
-        phoneNumber: "", // Added phone number
+        phoneNumber: referralNumber || "", // Pre-fill if exists
     });
+
+    // Update state if referralNumber changes (e.g. navigation)
+    useEffect(() => {
+        if (referralNumber) {
+            setFormData(prev => ({ ...prev, phoneNumber: referralNumber }));
+        }
+    }, [referralNumber]);
 
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
@@ -50,18 +57,15 @@ export default function DateScheduler() {
                             />
                         </div>
 
-                        <div>
-                            <label className="block text-pink-300 font-bold mb-2 text-left">Partner's WhatsApp (with country code) 📱</label>
-                            <input
-                                type="tel"
-                                name="phoneNumber"
-                                placeholder="e.g. 919876543210"
-                                required
-                                className="w-full p-3 rounded-xl border-2 border-pink-500/30 bg-black/50 text-pink-100 focus:border-pink-500 focus:outline-none transition-colors placeholder-pink-700/50"
-                                onChange={handleInputChange}
-                                autoComplete="tel"
-                            />
-                        </div>
+
+
+                        {referralNumber && (
+                            <div className="bg-pink-500/10 border border-pink-500/30 p-3 rounded-xl text-center">
+                                <p className="text-pink-300 text-sm font-bold">
+                                    Ticket will be sent to <span className="text-white">{senderName || "your Valentine"}</span> automatically! 📨
+                                </p>
+                            </div>
+                        )}
 
                         <div>
                             <label className="block text-pink-300 font-bold mb-2 text-left">What time? ⏰</label>

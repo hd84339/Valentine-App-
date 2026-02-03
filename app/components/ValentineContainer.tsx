@@ -1,18 +1,23 @@
 "use client";
 
-import { useState } from "react";
-import RoamingNoButton from "./RoamingNoButton";
+import { useState, useRef, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 import confetti from "canvas-confetti";
 import gsap from "gsap";
 import DateScheduler from "./DateScheduler";
+import RoamingNoButton from "./RoamingNoButton";
 
 export default function ValentineContainer() {
     const [yesPressed, setYesPressed] = useState(false);
     const [showScheduler, setShowScheduler] = useState(false);
     const [message, setMessage] = useState("");
 
+    const searchParams = useSearchParams();
+    const referralNumber = searchParams.get("ref");
+    const senderName = searchParams.get("name"); // Get name from URL
+
     const successMessages = [
-        "Congratulations 🎉 You are officially my Valentine now 😌💖",
+        `Congratulations 🎉 You are officially ${senderName ? `${senderName}'s` : "my"} Valentine now 😌💖`,
         "You clicked YES… now there’s no escape 😏❤️",
         "Na bug hoga, na error aayega, tera Valentine bas tere paas aayega! 💻❤️",
         "Roses are red, violets are blue, my code is broken, but I still love you! 🐛",
@@ -67,6 +72,11 @@ export default function ValentineContainer() {
         <div className="flex flex-col items-center justify-center p-8 text-center max-w-2xl mx-auto z-50 relative">
             {!yesPressed ? (
                 <div className="space-y-12 animate-in fade-in zoom-in duration-500">
+                    {senderName && (
+                        <div className="bg-pink-500/10 border border-pink-500/30 text-pink-300 px-6 py-2 rounded-full text-sm font-bold animate-bounce mb-4 inline-block">
+                            💌 Special Delivery from <span className="text-pink-100">{senderName}</span>!
+                        </div>
+                    )}
                     <h1 className="text-5xl md:text-6xl font-extrabold text-red-600 drop-shadow-sm tracking-tight text-balance">
                         Will you be my Valentine? 💖
                     </h1>
@@ -86,7 +96,16 @@ export default function ValentineContainer() {
                 <div className="w-full">
                     {!showScheduler ? (
                         <div className="space-y-8 animate-in fly-in-bottom duration-700">
-                            <div className="text-8xl animate-bounce">💘</div>
+                            <div className="text-8xl animate-bounce mb-4">💘</div>
+
+                            <div className="relative w-full max-w-sm mx-auto h-56 rounded-xl overflow-hidden shadow-2xl border-4 border-pink-500/50 mb-6">
+                                <img
+                                    src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExOXVsejAzdmxlZHN4dDYxMmVhbHp1b2EwaHlsbjE2dm9oeHMxcGR2aSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/llwtnFvreeiUz7ciYS/giphy.gif"
+                                    alt="Funny Baby Dancing"
+                                    className="w-full h-full object-cover"
+                                />
+                            </div>
+
                             <h2 className="text-4xl md:text-5xl font-bold text-red-600 leading-tight">
                                 {message}
                             </h2>
@@ -95,7 +114,7 @@ export default function ValentineContainer() {
                             </p>
                         </div>
                     ) : (
-                        <DateScheduler />
+                        <DateScheduler referralNumber={referralNumber} senderName={senderName} />
                     )}
                 </div>
             )}

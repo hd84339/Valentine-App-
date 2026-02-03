@@ -42,6 +42,18 @@ export default function DateTicket({ date, time, location, activity, phoneNumber
         }
     };
 
+    const handleInstagramShare = () => {
+        const text = `It's official! I'm your Valentine! 💖\n📅 Date: ${date} at ${time}\n📍 Location: ${location}\n🎬 Mission: ${activity}\nCan't wait! 🎟️`;
+
+        navigator.clipboard.writeText(text).then(() => {
+            alert("Ticket details copied! Paste them in Instagram DM 📸");
+            window.open("https://instagram.com/direct/inbox/", "_blank");
+        }).catch(err => {
+            console.error('Failed to copy text: ', err);
+            window.open("https://instagram.com/direct/inbox/", "_blank");
+        });
+    };
+
     return (
         <div className="flex flex-col items-center gap-8 w-full max-w-md mx-auto">
             <div
@@ -85,12 +97,22 @@ export default function DateTicket({ date, time, location, activity, phoneNumber
                 </div>
             </div>
 
-            <button
-                onClick={handleShare}
-                className="px-8 py-3 bg-pink-600 hover:bg-pink-700 text-white font-bold rounded-full shadow-lg shadow-pink-600/30 transition-all hover:scale-110 active:scale-95 flex items-center gap-2 animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-1000 fill-mode-forwards"
-            >
-                <span>Send to Valentine</span> 💌
-            </button>
+            <div className="flex gap-4 w-full">
+                <button
+                    onClick={handleShare}
+                    className="flex-1 bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-full shadow-lg transition-transform hover:scale-105 active:scale-95 flex items-center justify-center gap-2"
+                >
+                    <span>Send to Valentine 💌</span>
+                </button>
+
+                <button
+                    onClick={handleInstagramShare}
+                    className="bg-gradient-to-tr from-purple-500 via-pink-500 to-orange-500 hover:opacity-90 text-white font-bold py-3 px-4 rounded-full shadow-lg transition-transform hover:scale-105 active:scale-95 flex items-center justify-center"
+                    title="Share on Instagram"
+                >
+                    <span>📸</span>
+                </button>
+            </div>
         </div>
     );
 }
