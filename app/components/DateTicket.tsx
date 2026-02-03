@@ -55,16 +55,16 @@ export default function DateTicket({ date, time, location, activity, phoneNumber
     };
 
     return (
-        <div className="flex flex-col items-center gap-8 w-full max-w-md mx-auto">
+        <div className="flex flex-col items-center gap-6 md:gap-8 w-full max-w-md mx-auto px-4 md:px-0">
             <div
                 ref={ticketRef}
-                className="relative bg-zinc-900 border-4 border-dashed border-pink-500 p-8 rounded-xl shadow-2xl w-full transform hover:rotate-1 transition-transform cursor-default shadow-pink-500/20"
+                className="relative bg-zinc-900 border-4 border-dashed border-pink-500 p-6 md:p-8 rounded-xl shadow-2xl w-full transform hover:rotate-1 transition-transform cursor-default shadow-pink-500/20"
             >
                 {/* Holes for "ticket" look */}
                 <div className="absolute -left-4 top-1/2 w-8 h-8 bg-black rounded-full transform -translate-y-1/2" />
                 <div className="absolute -right-4 top-1/2 w-8 h-8 bg-black rounded-full transform -translate-y-1/2" />
 
-                <h3 className="text-3xl font-extrabold text-pink-500 mb-6 uppercase tracking-widest border-b-2 border-pink-500/30 pb-2 drop-shadow-[0_0_5px_rgba(236,72,153,0.5)]">
+                <h3 className="text-2xl md:text-3xl font-extrabold text-pink-500 mb-6 uppercase tracking-widest border-b-2 border-pink-500/30 pb-2 drop-shadow-[0_0_5px_rgba(236,72,153,0.5)]">
                     Official Date Ticket 🎟️
                 </h3>
 
@@ -89,7 +89,7 @@ export default function DateTicket({ date, time, location, activity, phoneNumber
                     <div className="text-xs text-pink-600/50 font-mono">
                         ID: LOVE-{Math.floor(Math.random() * 10000)}
                     </div>
-                    <div className="text-4xl animate-pulse text-white/90">barcode ║▌║█║</div>
+                    <div className="text-2xl md:text-4xl animate-pulse text-white/90">barcode ║▌║█║</div>
                 </div>
 
                 <div className="absolute -bottom-10 left-0 w-full text-center text-sm text-pink-400 font-bold animate-bounce mt-4 tracking-widest uppercase">

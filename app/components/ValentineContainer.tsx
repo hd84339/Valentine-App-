@@ -69,22 +69,22 @@ export default function ValentineContainer() {
     };
 
     return (
-        <div className="flex flex-col items-center justify-center p-8 text-center max-w-2xl mx-auto z-50 relative">
+        <div className="flex flex-col items-center justify-center p-4 md:p-8 text-center max-w-2xl mx-auto z-50 relative w-full">
             {!yesPressed ? (
-                <div className="space-y-12 animate-in fade-in zoom-in duration-500">
+                <div className="space-y-8 md:space-y-12 animate-in fade-in zoom-in duration-500 w-full">
                     {senderName && (
-                        <div className="bg-pink-500/10 border border-pink-500/30 text-pink-300 px-6 py-2 rounded-full text-sm font-bold animate-bounce mb-4 inline-block">
+                        <div className="bg-pink-500/10 border border-pink-500/30 text-pink-300 px-4 py-2 md:px-6 md:py-2 rounded-full text-xs md:text-sm font-bold animate-bounce mb-2 md:mb-4 inline-block">
                             💌 Special Delivery from <span className="text-pink-100">{senderName}</span>!
                         </div>
                     )}
-                    <h1 className="text-5xl md:text-6xl font-extrabold text-red-600 drop-shadow-sm tracking-tight text-balance">
+                    <h1 className="text-4xl md:text-6xl font-extrabold text-red-600 drop-shadow-sm tracking-tight text-balance leading-tight">
                         Will you be my Valentine? 💖
                     </h1>
 
-                    <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16 mt-12">
+                    <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-16 mt-8 md:mt-12 w-full">
                         <button
                             onClick={handleYesClick}
-                            className="bg-green-500 hover:bg-green-600 text-white font-bold py-4 px-10 rounded-full text-2xl shadow-xl transition-all hover:scale-110 active:scale-95 hover:shadow-green-500/50"
+                            className="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-8 md:py-4 md:px-10 rounded-full text-xl md:text-2xl shadow-xl transition-all hover:scale-110 active:scale-95 hover:shadow-green-500/50 w-full md:w-auto"
                         >
                             YES 😍
                         </button>

@@ -38,9 +38,9 @@ export default function DateScheduler({ referralNumber, senderName }: { referral
             {step === 1 ? (
                 <form
                     onSubmit={handleSubmit}
-                    className="bg-zinc-900/80 backdrop-blur-md p-8 rounded-3xl shadow-xl border-2 border-pink-500/50 animate-in slide-in-from-bottom duration-700 fade-in text-white shadow-pink-500/20"
+                    className="bg-zinc-900/80 backdrop-blur-md p-6 md:p-8 rounded-3xl shadow-xl border-2 border-pink-500/50 animate-in slide-in-from-bottom duration-700 fade-in text-white shadow-pink-500/20 w-full"
                 >
-                    <h3 className="text-2xl font-bold text-pink-500 mb-6 text-center drop-shadow-md">
+                    <h3 className="text-xl md:text-2xl font-bold text-pink-500 mb-6 text-center drop-shadow-md">
                         Let's make it official! 📅
                     </h3>
 
